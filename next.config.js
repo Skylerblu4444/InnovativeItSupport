@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',           // This makes it static!
-  trailingSlash: true,
+  reactStrictMode: true,
+  experimental: {
+    appDir: true
+  },
   images: {
-    unoptimized: true        // Required for static export
+    // allow images from common CDN if you add any
+    domains: ['images.unsplash.com', 'avatars.githubusercontent.com']
   }
 };
 
-export default nextConfig;
+module.exports = nextConfig;
