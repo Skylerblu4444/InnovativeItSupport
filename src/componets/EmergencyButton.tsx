@@ -1,17 +1,18 @@
-// src/components/EmergencyButton.tsx
-'use client';
-import { useRouter } from 'next/navigation';
+"use client";
 
 export default function EmergencyButton() {
-  const router = useRouter();
+  const handleClick = async () => {
+    await fetch("/api/emergency/trigger", { method: "POST" });
+
+    alert("Emergency ticket created. You will be contacted immediately.");
+  };
 
   return (
     <button
-      onClick={() => router.push('/portal/tickets/new')}
-      className="fixed right-6 bottom-6 bg-red-600 text-white px-4 py-3 rounded-full shadow-lg"
-      title="Open emergency ticket"
+      onClick={handleClick}
+      className="fixed bottom-8 right-8 bg-red-600 text-white rounded-full px-8 py-4 shadow-2xl hover:bg-red-700 text-xl font-bold"
     >
-      Emergency
+      Emergency IT Support
     </button>
   );
 }
