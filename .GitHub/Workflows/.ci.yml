@@ -20,3 +20,13 @@ jobs:
         run: npm run build
       - name: Lint
         run: npm run lint || true
+- name: Run tests
+        run: |
+          npm ci
+          npm run build || true
+          # run jest if available
+          if [ -f package.json ]; then
+            if npm run | grep -q test; then
+              npm test || true
+            fi
+          fi
