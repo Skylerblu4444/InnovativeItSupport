@@ -1,1 +1,191 @@
-  
+// src/components/portal/HomePage.tsx
+import React from 'react';
+import { 
+  Shield, Cloud, Code, Target, Zap, CheckCircle2, 
+  ArrowRight, Star, Award, TrendingUp, Users 
+} from 'lucide-react';
+
+interface HomePageProps {
+  onNavigate: (tab: string) => void;
+}
+
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+  return (
+    <div className="space-y-16">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 rounded-3xl p-12 md:p-16 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full px-4 py-2 mb-6">
+              <Shield className="w-4 h-4 text-blue-300" />
+              <span className="text-blue-200 text-sm font-semibold">Certified Security Experts</span>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              Enterprise IT Solutions
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+                Built By Experts
+              </span>
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl">
+              Led by Skyler, a cybersecurity graduate student and full-stack engineer. 
+              We deliver advanced penetration testing, cloud solutions, and custom development 
+              with a security-first approach.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <button
+                onClick={() => onNavigate('services')}
+                className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg"
+              >
+                Explore Services
+                <ArrowRight className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => onNavigate('contact')}
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 px-8 py-4 rounded-xl font-semibold transition-all"
+              >
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { label: 'Security Tests', value: '500+', icon: Target },
+          { label: 'Happy Clients', value: '150+', icon: Users },
+          { label: 'Vulnerabilities Fixed', value: '2,000+', icon: Shield },
+          { label: 'Uptime SLA', value: '99.99%', icon: TrendingUp }
+        ].map((stat, idx) => (
+          <div key={idx} className="bg-white rounded-xl shadow-md p-6 text-center transform hover:scale-105 transition-all">
+            <stat.icon className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+            <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+            <div className="text-sm text-gray-600">{stat.label}</div>
+          </div>
+        ))}
+      </section>
+
+      {/* Core Services */}
+      <section>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Comprehensive IT solutions tailored to your business needs
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              title: 'Penetration Testing',
+              description: 'Advanced ethical hacking and security assessments by certified professionals',
+              icon: Target,
+              color: 'from-red-500 to-orange-500'
+            },
+            {
+              title: 'Cloud Solutions',
+              description: 'Enterprise cloud infrastructure with zero-trust architecture',
+              icon: Cloud,
+              color: 'from-blue-500 to-cyan-500'
+            },
+            {
+              title: 'Custom Development',
+              description: 'Full-stack development with security-first approach',
+              icon: Code,
+              color: 'from-purple-500 to-indigo-500'
+            },
+            {
+              title: 'Managed Security',
+              description: '24/7 SOC monitoring and threat detection',
+              icon: Shield,
+              color: 'from-green-500 to-emerald-500'
+            },
+            {
+              title: 'Incident Response',
+              description: 'Rapid response team for security incidents',
+              icon: Zap,
+              color: 'from-yellow-500 to-orange-500'
+            },
+            {
+              title: 'Compliance',
+              description: 'Navigate regulatory requirements with expert guidance',
+              icon: CheckCircle2,
+              color: 'from-indigo-500 to-purple-500'
+            }
+          ].map((service, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all transform hover:-translate-y-1 cursor-pointer"
+              onClick={() => onNavigate('services')}
+            >
+              <div className={`w-14 h-14 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center mb-4`}>
+                <service.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+              <p className="text-gray-600 mb-4">{service.description}</p>
+              <button className="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-1">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-12">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Us?</h2>
+          <p className="text-xl text-gray-600">
+            Experience, expertise, and dedication to excellence
+          </p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              title: 'Expert Leadership',
+              description: 'Led by Skyler, a cybersecurity graduate student with BS in IT, full-stack engineering expertise, and advanced ethical hacking certifications',
+              icon: Award
+            },
+            {
+              title: 'Security-First',
+              description: 'Every solution built with security at its core. From code to cloud, we implement industry best practices',
+              icon: Shield
+            },
+            {
+              title: 'Proven Results',
+              description: '500+ successful security assessments, 2,000+ vulnerabilities remediated, 99.99% uptime for managed services',
+              icon: Star
+            }
+          ].map((point, idx) => (
+            <div key={idx} className="text-center">
+              <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <point.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{point.title}</h3>
+              <p className="text-gray-600">{point.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-12 text-center">
+        <h2 className="text-4xl font-bold text-white mb-4">
+          Ready to Secure Your Infrastructure?
+        </h2>
+        <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          Get a free security assessment and consultation with our expert team
+        </p>
+        <button
+          onClick={() => onNavigate('contact')}
+          className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg"
+        >
+          Schedule Free Consultation
+        </button>
+      </section>
+    </div>
+  );
+};  
