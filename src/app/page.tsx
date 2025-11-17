@@ -1,3 +1,13 @@
+// snippet for pricing card
+import AnimatedCard from '@/components/AnimatedCard';
+
+<AnimatedCard title="Business Pro" className={plan.popular ? 'border-2 border-horizon-500' : ''}>
+  <div className="text-4xl font-extrabold">${1499}</div>
+  <div className="mt-4 text-sm text-slate-600">24/7 monitoring, priority support</div>
+  <div className="mt-6">
+    <button className="px-4 py-2 rounded bg-horizon-500 text-white">Subscribe</button>
+  </div>
+</AnimatedCard>
 // src/app/page.tsx
 import Hero from '@/components/Hero';
 import FeatureGrid from '@/components/FeatureGrid';
