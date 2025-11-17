@@ -1,25 +1,25 @@
-// src/components/TicketCard.tsx
-import { Ticket } from '../lib/types';
+import React from "react";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 
-export default function TicketCard({ ticket }: { ticket: Ticket }) {
+export default function TicketCard({ ticket }) {
   return (
-    <article className="bg-white p-4 rounded-lg shadow">
-      <div className="flex items-start justify-between">
-        <div>
-          <h4 className="font-semibold">{ticket.title}</h4>
-          <p className="text-sm text-slate-600 mt-1">{ticket.description}</p>
-        </div>
-        <div className="text-xs text-slate-500">
-          {new Date(ticket.created_at).toLocaleString()}
-          <div className="mt-2 text-sm">{ticket.priority}</div>
-        </div>
-      </div>
+    <Card className="w-full shadow-md hover:shadow-xl transition-all cursor-pointer">
+      <CardHeader>
+        <h2 className="text-xl font-bold">{ticket.title}</h2>
+        <p className="text-sm text-gray-500">{ticket.status.toUpperCase()}</p>
+      </CardHeader>
+      <CardContent>
+        <p>{ticket.description}</p>
 
-      <div className="mt-3">
-        <span className={`inline-block px-2 py-1 text-xs rounded ${ticket.status === 'open' ? 'bg-green-50 text-green-700' : ticket.status === 'in_progress' ? 'bg-yellow-50 text-yellow-700' : 'bg-slate-100 text-slate-700'}`}>
-          {ticket.status}
-        </span>
-      </div>
-    </article>
+        <div className="mt-4 flex gap-4">
+          <span className="text-blue-600 font-semibold">
+            Priority: {ticket.priority}
+          </span>
+          <span className="text-gray-600">
+            Created: {new Date(ticket.created_at).toLocaleString()}
+          </span>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
